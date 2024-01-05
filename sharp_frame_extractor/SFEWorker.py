@@ -46,7 +46,10 @@ def extract(window):
     success, image = vidcap.read()
 
     frame_path = os.path.join(output_path, "%sframe%04d.%s" % (prefix, i, output_format))
-    cv2.imwrite(frame_path, image)
+    if not image is None:
+        cv2.imwrite(frame_path, image)
+    else:
+        print(f'Save {frame_path} skip')
 
     return frame_path, sharpness
 
